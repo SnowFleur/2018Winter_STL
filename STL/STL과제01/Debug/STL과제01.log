@@ -1,0 +1,29 @@
+﻿  main.cpp
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3391): error C2171: '!': 'void' 형식의 피연산자에는 맞지 않습니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3484): note: 컴파일 중인 함수 템플릿 인스턴스화 'std::pair<_RanIt,_RanIt> std::_Partition_by_median_guess_unchecked<_RanIt,_Pr>(_RanIt,_RanIt,_Pr)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _RanIt=Player *,
+              _Pr=main::<lambda_a948f297d0f3b04c4b6c6f0027bef994>
+          ]
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3518): note: 컴파일 중인 함수 템플릿 인스턴스화 'void std::_Sort_unchecked<Player*,_Fn>(_RanIt,_RanIt,int,_Pr)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Fn=main::<lambda_a948f297d0f3b04c4b6c6f0027bef994>,
+              _RanIt=Player *,
+              _Pr=main::<lambda_a948f297d0f3b04c4b6c6f0027bef994>
+          ]
+  c:\users\vvv91\source\repos\stl과제01\stl과제01\main.cpp(82): note: 컴파일 중인 함수 템플릿 인스턴스화 'void std::sort<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,main::<lambda_a948f297d0f3b04c4b6c6f0027bef994>>(const _RanIt,const _RanIt,_Pr)'에 대한 참조를 확인하십시오.
+          with
+          [
+              _Ty=Player,
+              _RanIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Player>>>,
+              _Pr=main::<lambda_a948f297d0f3b04c4b6c6f0027bef994>
+          ]
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3391): error C2297: '&&': 오른쪽 피연산자 형식으로 'void'을(를) 사용할 수 없습니다.
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3398): error C2171: '!': 'void' 형식의 피연산자에는 맞지 않습니다.
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3398): error C2297: '&&': 오른쪽 피연산자 형식으로 'void'을(를) 사용할 수 없습니다.
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3413): error C2451: 'void' 형식의 조건식은 올바르지 않습니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3413): note: void 형식의 식을 다른 형식으로 변환할 수 없습니다.
+c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3433): error C2451: 'void' 형식의 조건식은 올바르지 않습니다.
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.13.26128\include\algorithm(3433): note: void 형식의 식을 다른 형식으로 변환할 수 없습니다.
