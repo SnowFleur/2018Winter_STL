@@ -7,14 +7,25 @@ class Player {
 	
 private:
 	int uid_;
-	int cookie_score_;
-	int escape_score_;
+	int cookieScore_;
+	int escapeScore_;
 
 public:
 	Player();
+	int getCookieScore()const;
+	int getEscapeScore()const;
+	void setCookieScroe(int);
+	void setEscapeScore(int);
+
 	Player(int, int,int);
-	bool operator<(const Player&);
-	friend ostream& operator<<(ostream&, Player&);
+//	Player& operator=(const Player&);
+	friend ostream& operator<<(ostream&, const Player&);
 	friend istream& operator>>(istream&, Player&);
 
 };
+
+/*
+
+
+
+*/
