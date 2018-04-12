@@ -1,5 +1,6 @@
 #include"player.h"
 #include<iostream>
+#include<iomanip>
 
 /*디폴트 생성자*/
 Player::Player() {
@@ -20,6 +21,10 @@ int Player::getEscapeScore()const {
 	return this->escapeScore_;
 }
 
+/*UID를 반환해주는 멤버함수*/
+int Player::getUid()const {
+	return this->uid_;
+}
 
 /*Cookie점수를 저장해주는 멤버함수*/
 void Player:: setCookieScroe(int random) {
@@ -30,13 +35,21 @@ void Player:: setCookieScroe(int random) {
 void Player::setEscapeScore(int random) {
 	this->escapeScore_ = random;
 }
+/*예전 점수와 비교하여 더 크면 바꾸는 멤버 함수*/
+void Player::compereScore() {
+	if (this->oldCookieScore_ < this->cookieScore_)
+		this->oldCookieScore_ = this->cookieScore_;
+		
+	if (this->oldEscapeScore_ < this->escapeScore_)
+		this->oldEscapeScore_ = this->escapeScore_;
+}
 
 
-/*operator= 연산자 오버로딩*/
-//Player& Player:: operator=(const Player&) {
-//
-//}
+/*operator== 연산자 오버로딩*/
+bool Player::operator==(const int me)const {
 
+	return me == this->uid_;
+}
 
 /*operator>> 연산자 오버로딩*/
 istream& operator>>(istream& is, Player& temp) {
@@ -47,8 +60,8 @@ istream& operator>>(istream& is, Player& temp) {
 /*operator<< 연산자 오버로딩*/
 ostream& operator<<(ostream& os, const Player& temp) {
 
-	os << &temp;
-	//os << temp.uid_ << " " << temp.cookieScore_ << " " << temp.escapeScore_;
+	os <<"    주소값"<< &temp<<"    ID"<<temp.uid_;
+	//os << std::setw(10) << temp.uid_ << " " << std::setw(10) << temp.cookieScore_ << " " << temp.escapeScore_;
 	return os;
 }
 
@@ -77,22 +90,31 @@ ostream& operator<<(ostream& os, const Player& temp) {
 /*
 1. 나를 뽑기부터 하고
 
+
+
+
 불러올때가 문제임(find 써야할거 같음)
 
+
 2. 그다음 상위%를 내 기준으로 함
+
+
 
 
 sort는 포인터 정렬이 아닌 값 정렬임 이터레이터 가 가리키고 있는 주소값은 동일하지만
 값은 바뀜
 
-  순서
-  10만명 랜덤값 생성
+
+
+
+       순서
+  10만명 랜덤값 생성 
     	|
     	v
-      정렬
+ 벡터셔플 및 1만명 쿠키런 플레이
     	|
     	v
-  1만명 랜덤값 생성
+ 벡터셔플 및 1만명 떼탈출 플레이
 		|
 		v
 	  정렬
