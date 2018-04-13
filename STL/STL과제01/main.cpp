@@ -34,9 +34,10 @@ int main() {
 	if (!load.is_open()) {
 		std::cout << "파일이 존재하지 않습니다." << std::endl;
 		/*임시 본인*/
-		vector.emplace_back(Player(Player::ME, 999999, 999999));
+		vector.emplace_back(Player(Player::ME, 99999999, 99999999));
 		my_iter = vector.begin();
-		for (int i = 0; i <= Player::USER_COUNT; i++) {
+
+		for (int i = 1; i <= Player::USER_COUNT; ++i) {
 			unsigned int cookie_score;
 			unsigned int escap_score;
 			cookie_score = static_cast<unsigned int>(nd(rd));
@@ -44,7 +45,9 @@ int main() {
 
 			vector.emplace_back(Player(i, cookie_score, escap_score));
 		}
+
 	}
+
 
 	/*파일이 있음Load함수 호출*/
 	else {
@@ -53,45 +56,57 @@ int main() {
 	}
 
 	/*프로그램은 이 과정을 반복할 수 있어야한다.*/
-	while (game) {
+	while (game) {  //나중에 접두어 생각해볼것
+
+
+
 
 		/*쿠키런 플레이를 위한 10만명벡터 셔플*/
 		std::shuffle(vector.begin() + 1, vector.end(), rd);
 
+
+		std::cout << "내점수" << my_iter->getCookieScore() << std::endl;
+		std::cout << "주소값:" << my_iter._Ptr << std::endl;
+		std::cout <<"벡터값:"<< vector[0] << std::endl;
+
 		/*1만명 쿠키런 플레이 */
-		std::transform(vector.begin() + 1, vector.begin() + 10000, vector.begin(), [&](Player& temp) {
+		std::transform(vector.begin() + 1, vector.begin() + 10000, vector.begin()+1, [&](Player& temp) {
 
 			temp.setCookieScroe(static_cast<unsigned int>(nd(rd)));
 			temp.compereScore();
 			return temp;
 		});
+		std::cout << "내점수" << my_iter->getCookieScore() << std::endl;
+		std::cout << "주소값:" << my_iter._Ptr << std::endl;
+		std::cout << "벡터값:" << vector[0] << std::endl;
+
+
 
 		/* 뗴탈출 플레이를 위한 10만명벡터 셔플*/
 		std::shuffle(vector.begin() + 1, vector.end(), rd);
 
 		/*1만명 떼탈출 플레이 */
-		std::transform(vector.begin() + 1, vector.begin() + 10000, vector.begin(), [&](Player& temp) {
+		std::transform(vector.begin() + 1, vector.begin() + 10000, vector.begin()+1, [&](Player& temp) {
 
 			temp.setEscapeScore(static_cast<unsigned int>(nd(rd)));
 			temp.compereScore();
 			return temp;
 		});
+
 		/*나 자신의 값 다시 주기(플레이 하는 개념)*/
-		my_iter->setEscapeScore(static_cast<unsigned int>(nd(rd)));
+	/*	my_iter->setEscapeScore(static_cast<unsigned int>(nd(rd)));
 		my_iter->setCookieScroe(static_cast<unsigned int>(nd(rd)));
-		my_iter->compereScore();
+		my_iter->compereScore();*/
 
 		/*10만명 순위 정렬*/
 		showRanking(vector);
 
-		/*나찾기*/
-		my_iter = std::find(vector.begin(), vector.end(), Player::ME);
 
-		std::cout << "내점수" << my_iter->getCookieScore() << std::endl;
-		if ((my_iter + 1) > vector.begin())
-			std::cout << "내 앞점수" << (my_iter - 1)->getCookieScore() << std::endl;
-		if ((my_iter + 1) < vector.end())
-			std::cout << "내 뒤점수" << (my_iter + 1)->getCookieScore() << std::endl;
+
+
+
+
+
 
 		/*계속 할 것인지 물어봄*/
 		std::cout << "계속 하시겠습니까?:(Y/N)";
@@ -115,6 +130,7 @@ void dataSave(vector& vector) {
 		save_file << (*iter) << std::endl;
 	std::cout << std::endl;
 }
+
 /*데이터로드 함수*/
 void dataLoad(load& load_file, vector& vector) {
 	Player temp;
@@ -124,21 +140,36 @@ void dataLoad(load& load_file, vector& vector) {
 		vector.push_back(temp);
 	}
 	std::cout << std::endl;
+
+
 }
 
 /*랭킹출력 함수*/
 void showRanking(vector& vector) {
 
-	/*쿠키런*/
+	/*쿠키런 랭킹정렬*/
 	std::sort(vector.begin(), vector.end(), [](const auto& left, const auto& right) {
 		return left.getCookieScore() > right.getCookieScore();
 	});
 
 
-	/*탈출*/
+	/*떼탈출 랭크*/
 	std::sort(vector.begin(), vector.end(), [](const auto& left, const auto& right) {
 		return left.getEscapeScore() > right.getEscapeScore();
 	});
+
+
+
+	/*나찾기*/
+	my_iterator my_iter = std::find(vector.begin(), vector.end(), Player::ME);
+
+
+	std::cout << "내점수" << my_iter->getCookieScore() << std::endl;
+	if ((my_iter + 1) > vector.begin())
+		std::cout << "내 앞점수" << (my_iter - 1)->getCookieScore() << std::endl;
+	if ((my_iter + 1) < vector.end())
+		std::cout << "내 뒤점수" << (my_iter + 1)->getCookieScore() << std::endl;
+
 
 }
 

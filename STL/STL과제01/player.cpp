@@ -54,14 +54,18 @@ bool Player::operator==(const int me)const {
 /*operator>> 연산자 오버로딩*/
 istream& operator>>(istream& is, Player& temp) {
 	is >> temp.uid_ >> temp.cookieScore_ >> temp.escapeScore_;
+	is >> temp.oldCookieScore_ >> temp.oldEscapeScore_;
 	return is;
 }
 
 /*operator<< 연산자 오버로딩*/
 ostream& operator<<(ostream& os, const Player& temp) {
 
-	os <<"    주소값"<< &temp<<"    ID"<<temp.uid_;
-	//os << std::setw(10) << temp.uid_ << " " << std::setw(10) << temp.cookieScore_ << " " << temp.escapeScore_;
+	//os <<"    주소값"<< &temp<<"    ID"<<temp.uid_;
+	os << std::setw(10) << temp.uid_ << " " << std::setw(10) << temp.cookieScore_ << " " << temp.escapeScore_;
+	os <<" "<<temp.oldCookieScore_<<" "<< temp.oldEscapeScore_;
+
+
 	return os;
 }
 
