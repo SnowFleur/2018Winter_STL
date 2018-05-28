@@ -14,7 +14,7 @@
 //using my_pair = std::pair<char, SCount>;
 //
 //int main() {
-//	std::ifstream open("이상한 나라의 앨리스.txt");ㄴ
+//	std::ifstream open("이상한 나라의 앨리스.txt");
 //	char ch;
 //	std::map<char,SCount>mymap;
 //	for(int i='a';i<='z';++i)
