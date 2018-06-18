@@ -1,6 +1,6 @@
-#include"player.h"
-#include<iostream>
-#include<iomanip>
+#include"player.hpp"
+
+
 
 /*디폴트 생성자*/
 Player::Player() {
@@ -26,15 +26,27 @@ int Player::getUid()const {
 	return this->uid_;
 }
 
+/*myRank를 반환해주는 멤버함수*/
+int Player::getRank()const {
+	return this->myRank_;
+}
+void Player::setRank(const int rank) {
+	this->myRank_ = rank;
+}
+
 /*Cookie점수를 저장해주는 멤버함수*/
-void Player:: setCookieScroe(int random) {
+void Player:: setCookieScroe(const int random) {
 	this->cookieScore_ = random;
 }
 
 /*Esacpe점수를 저장해주는 멤버함수*/
-void Player::setEscapeScore(int random) {
+void Player::setEscapeScore(const int random) {
 	this->escapeScore_ = random;
 }
+
+
+
+
 /*예전 점수와 비교하여 더 크면 바꾸는 멤버 함수*/
 void Player::compereScore() {
 	if (this->oldCookieScore_ < this->cookieScore_)
@@ -62,9 +74,10 @@ istream& operator>>(istream& is, Player& temp) {
 ostream& operator<<(ostream& os, const Player& temp) {
 
 	//os <<"    주소값"<< &temp<<"    ID"<<temp.uid_;
-	os << std::setw(10) << temp.uid_ << " " << std::setw(10) << temp.cookieScore_ << " " << temp.escapeScore_;
-	os <<" "<<temp.oldCookieScore_<<" "<< temp.oldEscapeScore_;
-
+	/*UID,쿠키점수,떼탈출점수,예전쿠키점수,예전뗴탈출점수,랭크*/
+	//os << std::setw(10) << temp.uid_ << " " << std::setw(10) << temp.cookieScore_ << " " << temp.escapeScore_;
+	//os << " " << temp.oldCookieScore_ << " " << temp.oldEscapeScore_ << " " << temp.myRank_;
+	os << " " << temp.uid_ << " " << temp.cookieScore_ << " " << temp.myRank_;
 
 	return os;
 }
